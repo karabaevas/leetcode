@@ -16,9 +16,7 @@ class Solution {
         return stringBuilder.reverse().toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Solution().convertToTitle(701));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(new Solution().convertToTitle(701));
+//    }
 }
-
-a
