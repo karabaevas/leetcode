@@ -1,6 +1,7 @@
 package medium.kth.smallest.element.in.a.bst;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Main {
@@ -12,7 +13,6 @@ public class Main {
     public int kthSmallest(TreeNode root, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(k, Comparator.reverseOrder());
         visitNode(root, pq, k);
-
         return pq.poll();
     }
 
