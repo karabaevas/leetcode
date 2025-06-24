@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         System.out.println();
-        main.topKFrequent();
+//        main.topKFrequent();
     }
 
     public List<String> topKFrequent(String[] words, int k) {
