@@ -1,49 +1,41 @@
 package yandex.f1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ex25 {
     public static void main(String[] args) {
         Ex25 main = new Ex25();
-
-
     }
 
-    public boolean checkInclusion(String s1, String s2) {
-        int[] ar1 = new int[26];
-        int[] ar2 = new int[26];
+    public List<Integer> findAnagrams(String s, String p) {
+        int[] arP = new int[26];
+        int[] arS = new int[26];
 
-        for (int i = 0; i < s1.length(); i++) {
-            char ch = s1.charAt(i);
-            ar1[ch - 'a'] += 1;
+        for (int i = 0; i < p.length(); i++) {
+            arP[p.charAt(i) - 'a']++;
         }
 
+        List<Integer> result = new ArrayList<>();
         int left = 0;
-        int right = 0;
-        while (right < s2.length()) {
-            if ((right - left) == s1.length()) {
-                ar2[s2.charAt(left) - 'a'] -= 1;
-                ar2[s2.charAt(right) - 'a'] += 1;
-
-                if (Arrays.equals(ar2, ar1)) {
-                    return true;
+        for (int right = 0; right < s.length(); right++) {
+            if (right - left < p.length()) {
+                arS[s.charAt(right) - 'a']++;
+                if (Arrays.equals(arS, arP)) {
+                    result.add(left);
                 }
-
-                right++;
+            } else {
+                arS[s.charAt(left) - 'a']--;
                 left++;
-                continue;
-            }
+                arS[s.charAt(right) - 'a']++;
 
-            if ((right - left) < s1.length()) {
-                ar2[s2.charAt(right) - 'a'] += 1;
-                if (Arrays.equals(ar2, ar1)) {
-                    return true;
+                if (Arrays.equals(arS, arP)) {
+                    result.add(left);
                 }
-                right++;
             }
         }
-
-        return false;
+        return result;
     }
 
 
