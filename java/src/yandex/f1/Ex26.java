@@ -8,39 +8,60 @@ public class Ex26 {
     public static void main(String[] args) {
         Ex26 main = new Ex26();
 
+        main.minWindow("ADOBECODEBANC", "ABC");
 
 
     }
 
-    public List<Integer> findAnagrams(String s, String p) {
-        int[] arP = new int[26];
-        int[] arS = new int[26];
+    public String minWindow(String s, String t) {
+        int[] arS = new int[128];
+        int[] arT = new int[128];
 
-        for(int i=0; i<p.length(); i++){
-            arP[p.charAt(i)-'a']++;
+        for(int i = 0; i< t.length(); i++){
+            arT[t.charAt(i)-'A']++;
         }
 
-        List<Integer> result = new ArrayList<>();
-        int left = 0;
-        for(int right=0; right<s.length(); right++){
-            if(right-left<p.length()){
-                arS[s.charAt(right)-'a']++;
-                if(Arrays.equals(arS, arP)){
-                    result.add(left);
-                }
-            } else {
-                arS[s.charAt(left)-'a']--;
-                left++;
-                arS[s.charAt(right)-'a']++;
+        String result=null;
 
-                if(Arrays.equals(arS, arP)){
-                    result.add(left);
+        int left = 0;
+        int right = 0;
+        while(right < s.length()){
+
+            arS[s.charAt(right)-'A']++;
+            if(this.equals(arS, arT)){
+                String tmp = s.substring(left, right+1);
+                if(result == null || result.length() > tmp.length()){
+                    result = tmp;
+                }
+
+                while(this.equals(arS, arT)){
+                    tmp = s.substring(left, right+1);
+                    if(result == null || result.length() > tmp.length()){
+                        result = tmp;
+                    }
+                    arS[s.charAt(left)-'A']--;
+                    left++;
                 }
             }
-        }
-        return result;
 
+            right++;
+        }
+
+        if(result == null){
+            return "";
+        }
+
+        return result;
     }
 
+    public boolean equals(int[] arS, int[] arT){
+        for(int i=0; i< arS.length; i++){
+            int sVal = arS[i];
+            int tVal = arT[i];
 
-}
+            if(tVal >0 && sVal < tVal){
+                return false;
+            }
+        }
+        return true;
+    }
