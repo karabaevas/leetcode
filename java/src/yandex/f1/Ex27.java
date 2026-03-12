@@ -5,7 +5,7 @@ import java.util.TreeSet;
 
 public class Ex27 {
     public static void main(String[] args) {
-        Ex27 main = new Ex27()
+        Ex27 main = new Ex27();
 
 
     }
@@ -29,6 +29,4 @@ public class Ex27 {
     }
 
     record Dto(int value, int indx){}
-
-
 }

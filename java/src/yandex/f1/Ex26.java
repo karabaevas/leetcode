@@ -17,29 +17,29 @@ public class Ex26 {
         int[] arS = new int[128];
         int[] arT = new int[128];
 
-        for(int i = 0; i< t.length(); i++){
-            arT[t.charAt(i)-'A']++;
+        for (int i = 0; i < t.length(); i++) {
+            arT[t.charAt(i) - 'A']++;
         }
 
-        String result=null;
+        String result = null;
 
         int left = 0;
         int right = 0;
-        while(right < s.length()){
+        while (right < s.length()) {
 
-            arS[s.charAt(right)-'A']++;
-            if(this.equals(arS, arT)){
-                String tmp = s.substring(left, right+1);
-                if(result == null || result.length() > tmp.length()){
+            arS[s.charAt(right) - 'A']++;
+            if (this.equals(arS, arT)) {
+                String tmp = s.substring(left, right + 1);
+                if (result == null || result.length() > tmp.length()) {
                     result = tmp;
                 }
 
-                while(this.equals(arS, arT)){
-                    tmp = s.substring(left, right+1);
-                    if(result == null || result.length() > tmp.length()){
+                while (this.equals(arS, arT)) {
+                    tmp = s.substring(left, right + 1);
+                    if (result == null || result.length() > tmp.length()) {
                         result = tmp;
                     }
-                    arS[s.charAt(left)-'A']--;
+                    arS[s.charAt(left) - 'A']--;
                     left++;
                 }
             }
@@ -47,21 +47,22 @@ public class Ex26 {
             right++;
         }
 
-        if(result == null){
+        if (result == null) {
             return "";
         }
 
         return result;
     }
 
-    public boolean equals(int[] arS, int[] arT){
-        for(int i=0; i< arS.length; i++){
+    public boolean equals(int[] arS, int[] arT) {
+        for (int i = 0; i < arS.length; i++) {
             int sVal = arS[i];
             int tVal = arT[i];
 
-            if(tVal >0 && sVal < tVal){
+            if (tVal > 0 && sVal < tVal) {
                 return false;
             }
         }
         return true;
     }
+}
