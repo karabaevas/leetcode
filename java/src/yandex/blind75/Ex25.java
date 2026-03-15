@@ -1,12 +1,14 @@
 package yandex.blind75;
 
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 public class Ex25 {
     public static void main(String[] args) {
         Ex25 main = new Ex25();
 
+        Objects.equals("","");
 
 
     }
