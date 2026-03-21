@@ -5,28 +5,21 @@ public class Ex23 {
         Ex23 main = new Ex23();
     }
 
-    public boolean validPalindrome(String s) {
-        int counter = 0;
-        return isPali(s, 0);
-    }
 
-    private boolean isPali(String s, int counter){
-        int left = 0;
-        int right = s.length()-1;
-        while(left < right){
-            if(s.charAt(left) != s.charAt(right)){
-                if(counter==1){
-                    return false;
-                }
-                counter++;
-                return isPali(s.substring(left+1, right+1), counter) || isPali(s.substring(left, right), counter);
+    public int maxArea(int[] height) {
+        int l = 0;
+        int r = height.length-1;
+
+        int result = 0;
+        while(l < r){
+            result = Math.max(Math.min(height[l], height[r])*(r-l), result);
+            if(height[l] < height[r]){
+                l++;
+            }else {
+                r--;
             }
-
-            left++;
-            right--;
         }
-        return true;
+        return result;
     }
-
 
 }
