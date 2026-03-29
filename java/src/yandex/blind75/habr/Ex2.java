@@ -5,6 +5,7 @@ public class Ex2 {
         Ex2 main = new Ex2();
     }
 
+//    https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
     public int longestSubarray(int[] nums) {
         int l = 0;
         int r = 0;
