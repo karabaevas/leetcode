@@ -11,7 +11,7 @@ public class Ex228_1 {
         while(i < nums.length){
             int start = nums[i];
 
-            while(i < nums.length-1 && nums[i]+1 == nums[i+1]){
+            while( i < nums.length-1 && nums[i]+1 == nums[i+1]){
                 i++;
             }
 
