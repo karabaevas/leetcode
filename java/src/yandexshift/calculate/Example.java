@@ -13,6 +13,7 @@ public class Example {
 
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<>();
+
         s = s.trim();
         int index = 0;
         int num = 0;
