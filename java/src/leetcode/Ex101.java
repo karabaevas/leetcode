@@ -13,11 +13,8 @@ public class Ex101 {
     }
 
     boolean doCheck(TreeNode left, TreeNode right){
-        if(left == null && right == null){
-            return true;
-        }
-        if((left == null && right != null) || (left != null && right == null)){
-            return false;
+        if((left == null || right == null)){
+            return left == right;
         }
 
         if(left.val == right.val){
