@@ -21,7 +21,7 @@ public class Ex557 {
             }
             r = l;
 
-            while(r+1 < s.length && s.charAt(r+1) != ' '){
+            while(r+1 < s.length() && s.charAt(r+1) != ' '){
                 r++;
             }
 
