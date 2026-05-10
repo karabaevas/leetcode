@@ -3,14 +3,11 @@ package leetcode;
 public class Ex724 {
     public static void main(String[] args) {
         Ex724 main = new Ex724();
-
-
-
     }
 
     public int pivotIndex(int[] nums) {
-        int[] leftsum = new int[];
-        int[] rightsum = new int[];
+        int[] leftsum = new int[nums.length];
+        int[] rightsum = new int[nums.length];
 
         int sum = 0;
         for(int i = 0; i<nums.length; i++){
