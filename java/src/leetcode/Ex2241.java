@@ -2,8 +2,6 @@ package leetcode;
 
 public class Ex2241 {
     public class ATM {
-//    public static void main(String[] args) {
-//        ATM main = new ATM();
 //    }
 
         int[] storage = new int[5];
