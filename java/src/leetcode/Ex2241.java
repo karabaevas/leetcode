@@ -1,9 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.TreeMap;
-
 public class Ex2241 {
     public class ATM {
 //    public static void main(String[] args) {
@@ -48,15 +44,9 @@ public class Ex2241 {
                     continue;
                 }
 
-                int available = storage[i] * nominal;
-                if (available > amount) {
-                    int counter = amount / nominal;
-                    res[i] = counter;
-                    amount = amount - counter * nominal;
-                } else {
-                    res[i] = storage[i];
-                    amount = amount - storage[i] * nominal;
-                }
+                int counter = Math.min(storage[i], amount / nominal);
+                res[i] = counter;
+                amount = amount - counter * nominal;
 
             }
 
