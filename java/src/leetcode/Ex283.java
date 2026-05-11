@@ -6,17 +6,18 @@ public class Ex283 {
     }
 
     public void moveZeroes(int[] nums) {
-        int insPos = 0;
-        for(int i = 0; i < nums.length; i++){
+        int inspos = 0;
+        for (int i = 0; i< nums.length; i++){
             if(nums[i] != 0){
-                nums[insPos] = nums[i];
-                insPos++;
+                nums[inspos] = nums[i];
+                inspos++;
             }
         }
 
-        while(insPos < nums.length){
-            nums[insPos] = 0;
-            insPos++;
+        while(inspos < nums.length){
+            nums[inspos] = 0;
+            inspos++;
         }
     }
+
 }
