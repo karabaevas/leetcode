@@ -11,31 +11,41 @@ public class Ex3 {
 
     }
 
-    public int lengthOfLongestSubstring(String s) {
-        int left = 0;
-        int right = 0;
+    /**
+     * Для заданной строки найти длину наибольшей подстроки без
+     * повторяющихся символов.
+     * Например:
+     * abcabcbbddee -> 3 (abc)
+     * bbbbb -> 1 (b)
+     * pwwkew -> 3 (wke)
+     * pwwkewpwwkew -> 4 (kewp)
+     */
 
-        Map<Character, Integer> map =  new HashMap<>();
-        int result = 0;
-        while(right < s.length()){
-            char rChar = s.charAt(right);
-            Integer rFreq = map.getOrDefault(rChar, 0);
-            rFreq++;
-            map.put(rChar, rFreq);
+    public int findLengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int res = 0;
+        int l = 0;
+        for(int r = 0; r< s.length(); r++){
+            char curR = s.charAt(r);
+            int counter = map.getOrDefault(curR, 0) + 1;
+            map.put(curR, counter);
 
-            while(map.get(rChar) > 1){
-                char lChar = s.charAt(left);
-                Integer lFreq = map.get(lChar);
-                lFreq--;
-                map.put(lChar, lFreq);
-                left++;
+            while(map.get(curR) > 1){
+                char curL = s.charAt(l);
+                int counterL = map.get(curL) - 1;
+                if(counterL == 0){
+                    map.remove(curL);
+                } else {
+                    map.put(curL, counterL);
+                }
+
+                l++;
             }
 
-            result = Math.max(result, right - left + 1);
-            right++;
+            res = Math.max(res, r-l+1);
         }
 
-        return result;
+        return res;
     }
 
 }
