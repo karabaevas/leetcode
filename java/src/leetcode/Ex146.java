@@ -6,91 +6,77 @@ import java.util.Map;
 public class Ex146 {
     class LRUCache {
 
-        class Node{
-            Node prev;
-            Node next;
-            int key;
-            int val;
+        Node head = new Node( null, null, 0, 0);
+        Node tail = new Node( null, null, 0, 0);
+        int capacity;
+        HashMap<Integer, Node> map = new HashMap<>();
 
-            Node(Node prev, Node next, int key, int val){
-                this.prev = prev;
-                this.next = next;
-                this.key = key;
-                this.val = val;
-            }
-        }
-
-        Map<Integer, Node> map;
-        Node head = null;
-        Node tail = null;
-        int cap = 0;
         public LRUCache(int capacity) {
-            map = new HashMap<>();
-            head = new Node(null, null, 0, 0);
-            tail = new Node(null, null, 0, 0);
-
-            head.next = tail;
-            tail.prev = head;
-
-            cap = capacity;
+            this.capacity = capacity;
+            this.head.next = tail;
+            this.tail.prev = head;
         }
 
         public int get(int key) {
-            Node oldNode = map.get(key);
-            if(oldNode == null){
+            Node node = map.get(key);
+            if(node == null){
                 return -1;
             }
 
-            oldNode.prev.next = oldNode.next;
-            oldNode.next.prev = oldNode.prev;
+            removeFromMiddle(node);
+            insertToHead(node);
 
-            // insert to head
-            oldNode.prev = head;
-            oldNode.next = head.next;
-            head.next.prev = oldNode;
-            head.next = oldNode;
-            return oldNode.val;
+            return node.value;
         }
 
         public void put(int key, int value) {
             Node oldNode = map.get(key);
             if(oldNode == null){
-
-                if(map.size() == cap){
-                    Node lruNode = tail.prev;
-                    lruNode.prev.next = lruNode.next;
-                    lruNode.next.prev = lruNode.prev;
-                    lruNode.next = null;
-                    lruNode.prev = null;
-                    map.remove(lruNode.key);
-                }
-
                 Node newNode = new Node(null, null, key, value);
+                insertToHead(newNode);
                 map.put(key, newNode);
-                // insert to head
-                newNode.prev = head;
-                newNode.next = head.next;
-                head.next.prev = newNode;
-                head.next = newNode;
             } else {
-                oldNode.prev.next = oldNode.next;
-                oldNode.next.prev = oldNode.prev;
+                oldNode.value = value;
 
-                // insert to head
-                oldNode.prev = head;
-                oldNode.next = head.next;
-                head.next.prev = oldNode;
-                head.next = oldNode;
-                oldNode.val = value;
+                removeFromMiddle(oldNode);
+                insertToHead(oldNode);
+            }
+
+            if(map.size() > capacity){
+                Node last = tail.prev;
+                map.remove(last.key);
+                removeFromMiddle(last);
             }
         }
+
+        void removeFromMiddle(Node node){
+            Node prev = node.prev;
+            Node next = node.next;
+
+            prev.next = next;
+            next.prev = prev;
+        }
+
+        void insertToHead(Node node){
+            node.next = head.next;
+            head.next.prev = node;
+
+            node.prev = head;
+            head.next = node;
+        }
     }
+}
 
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache obj = new LRUCache(capacity);
- * int param_1 = obj.get(key);
- * obj.put(key,value);
- */
 
+class Node{
+    Node prev;
+    Node next;
+    int key;
+    int value;
+    Node(Node prev, Node next, int key, int value){
+        this.prev = prev;
+        this.next = next;
+        this.key = key;
+        this.value = value;
+    }
 }
