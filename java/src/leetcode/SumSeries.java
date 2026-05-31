@@ -20,56 +20,34 @@ List<Point> sumSeries(List<Point> a, List<Point> b) {
 
     int i = 0;
     int j = 0;
-    Point apprev = new Point(-1, 0);
-    Point bpprev = new Point(-1, 0);
 
-    while (i < a.size() && j < b.size()) {
-        Point ap = a.get(i);
-        Point bp = b.get(j);
+    int aval = 0;
+    int bval = 0;
+    int time = 0;
 
-        Point cur;
-        if (ap.time < bp.time) {
-            cur = new Point(ap.time, bpprev.value + ap.value);
+    while(i < a.size() || j < b.size()){
 
-            apprev = ap;
+        if(j == b.size() || a.get(i).time < b.get(j).time){
+            aval = a.get(i).value;
+            time = a.get(i).time;
             i++;
-        } else if (ap.time > bp.time) {
-            cur = new Point(bp.time, apprev.value + bp.value);
-            bpprev = bp;
+        } else if(b.get(j).time < a.get(i).time){
+            bval = b.get(j).value;
+            time = b.get(j).time;
             j++;
         } else {
-            cur = new Point(ap.time, bp.value + ap.value);
-            apprev = ap;
-            bpprev = bp;
+            aval = a.get(i).value;
+            bval = b.get(j).value;
+            time = b.get(j).time;
             i++;
             j++;
         }
 
-        if(res.isEmpty() || (res.getLast().value != cur.value)){
-            res.add(cur);
+        int sum = aval + bval;
+
+        if(res.isEmpty() || res.getLast().value != sum){
+            res.add(new Point(time, sum));
         }
-    }
-
-    while(i < a.size()){
-        Point ap = a.get(i);
-        Point cur = new Point(ap.time, bpprev.value + ap.value);
-        apprev = ap;
-
-        if(res.isEmpty() || (res.getLast().value != cur.value)){
-            res.add(cur);
-        }
-        i++;
-    }
-
-    while(j < b.size()){
-        Point bp = b.get(j);
-        Point cur = new Point(bp.time, apprev.value + bp.value);
-        bpprev = bp;
-
-        if(res.isEmpty() || (res.getLast().value != cur.value)){
-            res.add(cur);
-        }
-        j++;
     }
 
 
