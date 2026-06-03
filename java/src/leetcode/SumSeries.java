@@ -53,3 +53,6 @@ List<Point> sumSeries(List<Point> a, List<Point> b) {
 
     return res;
 }
+
+void main() {
+}

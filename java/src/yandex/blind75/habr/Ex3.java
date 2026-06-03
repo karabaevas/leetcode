@@ -24,7 +24,7 @@ public class Ex3 {
             events.add(new Event(intervals[I][1], -1));
         }
 
-        Collections.sort(events, Comparator.comparingInt(Event::time).thenComparingInt(Event::value);
+        Collections.sort(events, Comparator.comparingInt(Event::time).thenComparingInt(Event::value));
 
         int result = 0;
         int max = 0;
