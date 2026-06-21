@@ -1,4 +1,4 @@
-package neetcode150;
+package blind75;
 
 public class Ex55 {
     public boolean canJump(int[] nums) {

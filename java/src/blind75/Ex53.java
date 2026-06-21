@@ -1,4 +1,4 @@
-package neetcode150;
+package blind75;
 
 public class Ex53 {
     public int maxSubArray(int[] nums) {
