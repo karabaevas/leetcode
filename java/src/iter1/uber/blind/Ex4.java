@@ -1,6 +1,5 @@
 package iter1.uber.blind;
 
-//https://leetcode.com/problems/number-of-islands/
 public class Ex4 {
 
 //    https://leetcode.com/problems/product-of-array-except-self/
